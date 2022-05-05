@@ -165,6 +165,9 @@ int main()
                     {
                         printf("Terminated Incorrectly\n");
                     }
+                    else{
+                        exit(0);
+                    }
                 }
                 // Remove if breaks pipe delay
                 if (amp != 1)
