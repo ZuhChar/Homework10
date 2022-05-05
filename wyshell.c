@@ -205,7 +205,7 @@ int main()
                     printf("Terminated Incorrectly\n");
                 }
                 else{
-                    exit();
+                    exit(0);
                 }
             }
         }
