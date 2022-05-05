@@ -201,12 +201,12 @@ int main()
             if (fork() == 0)
             {
                 current = Head;
-                int status_code = execvp(current->command, arguments);
+                // int status_code = execvp(current->command, arguments);
 
-                if (status_code == -1)
-                {
-                    printf("Terminated Incorrectly\n");
-                }
+                // if (status_code == -1)
+                // {
+                //     printf("Terminated Incorrectly\n");
+                // }
             }
         }
         /*
