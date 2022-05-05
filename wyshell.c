@@ -142,6 +142,8 @@ int main()
                 ambigInUse = 1;
                 break;
             case PIPE:
+                if (pipe(p) < 0)
+                    exit(1);
                 if (fork() == 0)
                 {
                     int status_code = execvp(current->command, arguments);
@@ -150,7 +152,7 @@ int main()
                         printf("Terminated Incorrectly\n");
                     }
                 }
-                //Remove if breaks pipe delay
+                // Remove if breaks pipe delay
                 if (amp != 1)
                 {
                     wait(NULL);
@@ -165,7 +167,8 @@ int main()
                     {
                         printf("Terminated Incorrectly\n");
                     }
-                    else{
+                    else
+                    {
                         exit(0);
                     }
                 }
@@ -201,13 +204,15 @@ int main()
         // Create a child to run the command in
         if (prevUse == 0)
         {
+
             if (fork() == 0)
             {
                 if (execvp(current->command, arguments) == -1)
                 {
                     printf("Terminated Incorrectly\n");
                 }
-                else{
+                else
+                {
                     exit(0);
                 }
             }
