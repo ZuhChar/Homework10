@@ -143,7 +143,8 @@ int main()
                 ambigInUse = 1;
                 break;
             case PIPE:
-                char* pipeArgs[100] = arguments;
+                char* pipeArgs[100] = {NULL};
+                pipeArgs = arguments;
                 if (fork() == 0)
                 {
                     int status_code = execvp(current->command, pipeArgs);
