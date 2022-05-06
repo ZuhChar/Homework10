@@ -110,8 +110,8 @@ int main()
                 }
                 else
                 {
-                    arguments[count] = lexeme;
                     arguments[count + 2] = arguments[count + 1];
+                    arguments[count] = lexeme;
                     count++;
                     if (eol == 1)
                     {
