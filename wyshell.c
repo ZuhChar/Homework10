@@ -118,6 +118,7 @@ int main()
                         break;
                     }
                     addToList(lexeme, current);
+                    commands = current->arg_list;
                     // printf("Command added to list");
                 }
                 // commands = head;
@@ -207,8 +208,8 @@ int main()
         {
             int i = 0;
             char* args[100] = {};
-            while(current->arg_list->next != NULL){
-                args[i] = current->arg_list->string;
+            while(commands != NULL){
+                args[i] = commands->string;
                 i++;
             }
             args[i] = NULL;
