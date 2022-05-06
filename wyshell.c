@@ -89,6 +89,7 @@ int main()
         int eol = 0;
         int count = 1;
         int amp = 0;
+        char *arguments[100] = {lexeme, NULL};
         // current = calloc(1, sizeof(Node));
         while (rtn != EOL)
         {
@@ -105,13 +106,13 @@ int main()
                 {
                     prevUse = 0;
                     current->command = strdup(lexeme);
+                    arguments[0] = strdup(lexeme);
                     // printf("String duplicated");
                 }
                 else
                 {
-                    char *arguments[100] = {current->command, NULL};
                     arguments[count + 1] = arguments[count];
-                    arguments[count] = lexeme;
+                    arguments[count] = strdup(lexeme);
                     count++;
                     if (eol == 1)
                     {
