@@ -104,6 +104,14 @@ int main()
                 }
                 if (current->command == NULL || prevUse == 1)
                 {
+                    if (prevUse == 1)
+                    {
+                        prevUse = 0;
+                        for (int i = 1; i < 100; i++)
+                        {
+                            arguments[i] = NULL;
+                        }
+                    }
                     prevUse = 0;
                     current->command = strdup(lexeme);
                     arguments[0] = strdup(lexeme);
