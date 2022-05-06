@@ -96,6 +96,13 @@ int main()
             switch (rtn)
             {
             case WORD:
+                if (prevUse == 1)
+                {
+                    for (int i = 1; i < 100; i++)
+                    {
+                        arguments[i] = NULL;
+                    }
+                }
                 if (Head == NULL)
                 {
                     Head = calloc(1, sizeof(Node));
@@ -161,10 +168,6 @@ int main()
                     wait(NULL);
                 }
                 prevUse = 1;
-                for (int i = 0; i < 100; i++)
-                {
-                    arguments[i] = NULL;
-                }
                 break;
             case SEMICOLON:
                 if (fork() == 0)
