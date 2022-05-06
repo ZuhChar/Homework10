@@ -87,6 +87,7 @@ int main()
         int ambigOutUse = 0;
         int ambigInUse = 0;
         int eol = 0;
+        int count = 1;
         int amp = 0;
         char *arguments[100] = {lexeme, NULL};
         // current = calloc(1, sizeof(Node));
@@ -95,7 +96,6 @@ int main()
             switch (rtn)
             {
             case WORD:
-            int count = 1;
                 if (Head == NULL)
                 {
                     Head = calloc(1, sizeof(Node));
@@ -161,6 +161,7 @@ int main()
                     {
                         exit(0);
                     }
+                    count = 1;
                 }
                 // Remove if breaks pipe delay
                 if (amp != 1)
