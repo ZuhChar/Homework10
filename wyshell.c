@@ -110,15 +110,14 @@ int main()
                 }
                 else
                 {
-                    // arguments[count] = lexeme;
-                    // arguments[count + 2] = arguments[count + 1];
-                    // count++;
+                    arguments[count] = lexeme;
+                    arguments[count + 2] = arguments[count + 1];
+                    count++;
                     if (eol == 1)
                     {
                         break;
                     }
                     addToList(lexeme, current);
-                    commands = current->arg_list;
                     // printf("Command added to list");
                 }
                 // commands = head;
@@ -206,16 +205,10 @@ int main()
         // Create a child to run the command in
         if (prevUse == 0)
         {
-            int i = 0;
-            char* args[100] = {};
-            while(commands != NULL){
-                args[i] = commands->string;
-                i++;
-            }
-            args[i] = NULL;
+
             if (fork() == 0)
             {
-                if (execvp(current->command, args) == -1)
+                if (execvp(current->command, current->arg_list) == -1)
                 {
                     printf("Terminated Incorrectly\n");
                 }
