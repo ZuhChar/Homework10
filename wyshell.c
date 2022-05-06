@@ -156,7 +156,9 @@ int main()
                         exit(0);
                     }
                 }
-                arguments = NULL;
+                for(int i = 0; i < 100; i++){
+                    arguments[i] = NULL;
+                }
                 // Remove if breaks pipe delay
                 if (amp != 1)
                 {
