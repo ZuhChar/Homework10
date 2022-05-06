@@ -143,7 +143,7 @@ int main()
                 ambigInUse = 1;
                 break;
             case PIPE:
-                char* pipeArgs[100] = {NULL};
+                pipeArgs[100] = {NULL};
                 pipeArgs = arguments;
                 if (fork() == 0)
                 {
