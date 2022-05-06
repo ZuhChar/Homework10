@@ -74,7 +74,6 @@ int main()
 {
     Node *Head = NULL, *current = NULL;
     Word *commands = NULL;
-    char *arguments[100] = {lexeme, NULL};
     while (1)
     {
         printf("$> ");
@@ -90,6 +89,7 @@ int main()
         int eol = 0;
         int count = 1;
         int amp = 0;
+        char *arguments[100] = {lexeme, NULL};
         // current = calloc(1, sizeof(Node));
         while (rtn != EOL)
         {
@@ -143,7 +143,6 @@ int main()
                 ambigInUse = 1;
                 break;
             case PIPE:
-                
                 if (fork() == 0)
                 {
                     int status_code = execvp(current->command, arguments);
@@ -155,9 +154,6 @@ int main()
                     {
                         exit(0);
                     }
-                }
-                for(int i = 0; i < 100; i++){
-                    arguments[i] = NULL;
                 }
                 // Remove if breaks pipe delay
                 if (amp != 1)
