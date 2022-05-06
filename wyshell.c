@@ -87,7 +87,6 @@ int main()
         int ambigOutUse = 0;
         int ambigInUse = 0;
         int eol = 0;
-        int count = 1;
         int amp = 0;
         char *arguments[100] = {lexeme, NULL};
         // current = calloc(1, sizeof(Node));
@@ -96,28 +95,7 @@ int main()
             switch (rtn)
             {
             case WORD:
-            if (prevUse == 1){
-                if (fork() == 0)
-                {
-                    int status_code = execvp(current->command, arguments);
-                    if (status_code == -1)
-                    {
-                        printf("Terminated Incorrectly\n");
-                    }
-                    else
-                    {
-                        exit(0);
-                    }
-                }
-                // Remove if breaks pipe delay
-                if (amp != 1)
-                {
-                    wait(NULL);
-                }
-                for (int i = 0; i < 100; i++){
-                    arguments[i] = NULL;
-                }
-            }
+            int count = 1;
                 if (Head == NULL)
                 {
                     Head = calloc(1, sizeof(Node));
@@ -192,23 +170,23 @@ int main()
                 prevUse = 1;
                 break;
             case SEMICOLON:
-                // if (fork() == 0)
-                // {
-                //     int status_code = execvp(current->command, arguments);
-                //     if (status_code == -1)
-                //     {
-                //         printf("Terminated Incorrectly\n");
-                //     }
-                //     else
-                //     {
-                //         exit(0);
-                //     }
-                // }
-                // // Remove if breaks pipe delay
-                // if (amp != 1)
-                // {
-                //     wait(NULL);
-                // }
+                if (fork() == 0)
+                {
+                    int status_code = execvp(current->command, arguments);
+                    if (status_code == -1)
+                    {
+                        printf("Terminated Incorrectly\n");
+                    }
+                    else
+                    {
+                        exit(0);
+                    }
+                }
+                // Remove if breaks pipe delay
+                if (amp != 1)
+                {
+                    wait(NULL);
+                }
                 prevUse = 1;
                 break;
             case ERROR_CHAR:
