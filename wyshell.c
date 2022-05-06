@@ -96,6 +96,28 @@ int main()
             switch (rtn)
             {
             case WORD:
+            if (prevUse == 1){
+                if (fork() == 0)
+                {
+                    int status_code = execvp(current->command, arguments);
+                    if (status_code == -1)
+                    {
+                        printf("Terminated Incorrectly\n");
+                    }
+                    else
+                    {
+                        exit(0);
+                    }
+                }
+                // Remove if breaks pipe delay
+                if (amp != 1)
+                {
+                    wait(NULL);
+                }
+                for (int i = 0; i < 100; i++){
+                    arguments[i] = NULL;
+                }
+            }
                 if (Head == NULL)
                 {
                     Head = calloc(1, sizeof(Node));
@@ -170,23 +192,23 @@ int main()
                 prevUse = 1;
                 break;
             case SEMICOLON:
-                if (fork() == 0)
-                {
-                    int status_code = execvp(current->command, arguments);
-                    if (status_code == -1)
-                    {
-                        printf("Terminated Incorrectly\n");
-                    }
-                    else
-                    {
-                        exit(0);
-                    }
-                }
-                // Remove if breaks pipe delay
-                if (amp != 1)
-                {
-                    wait(NULL);
-                }
+                // if (fork() == 0)
+                // {
+                //     int status_code = execvp(current->command, arguments);
+                //     if (status_code == -1)
+                //     {
+                //         printf("Terminated Incorrectly\n");
+                //     }
+                //     else
+                //     {
+                //         exit(0);
+                //     }
+                // }
+                // // Remove if breaks pipe delay
+                // if (amp != 1)
+                // {
+                //     wait(NULL);
+                // }
                 prevUse = 1;
                 break;
             case ERROR_CHAR:
@@ -212,21 +234,21 @@ int main()
             }
         }
         // Create a child to run the command in
-        // if (prevUse == 0)
-        // {
+        if (prevUse == 0)
+        {
 
-        //     if (fork() == 0)
-        //     {
-        //         if (execvp(current->command, arguments) == -1)
-        //         {
-        //             printf("Terminated Incorrectly\n");
-        //         }
-        //         else
-        //         {
-        //             exit(0);
-        //         }
-        //     }
-        // }
+            if (fork() == 0)
+            {
+                if (execvp(current->command, arguments) == -1)
+                {
+                    printf("Terminated Incorrectly\n");
+                }
+                else
+                {
+                    exit(0);
+                }
+            }
+        }
         /*
             First attempt at printing the output
             commands = calloc(1, sizeof(Word));
