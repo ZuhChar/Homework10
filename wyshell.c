@@ -122,6 +122,12 @@ int main()
                     // printf("Command added to list");
                 }
                 // commands = head;
+                if (prevUse == 1){
+                    for (int i = 1; i < 100; i++)
+                    {
+                        arguments[i] = NULL;
+                    }
+                }
                 break;
             case REDIR_OUT:
                 if (ambigOutUse == 1)
@@ -166,7 +172,6 @@ int main()
                 {
                     arguments[i] = NULL;
                 }
-                Head = NULL;
                 break;
             case SEMICOLON:
                 if (fork() == 0)
@@ -186,7 +191,6 @@ int main()
                 {
                     wait(NULL);
                 }
-                Head = NULL;
                 prevUse = 1;
                 break;
             case ERROR_CHAR:
