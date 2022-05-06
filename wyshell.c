@@ -96,13 +96,6 @@ int main()
             switch (rtn)
             {
             case WORD:
-                if (prevUse == 1)
-                {
-                    for (int i = 1; i < 100; i++)
-                    {
-                        arguments[i] = NULL;
-                    }
-                }
                 if (Head == NULL)
                 {
                     Head = calloc(1, sizeof(Node));
@@ -150,6 +143,7 @@ int main()
                 ambigInUse = 1;
                 break;
             case PIPE:
+
                 if (fork() == 0)
                 {
                     int status_code = execvp(current->command, arguments);
@@ -168,7 +162,10 @@ int main()
                     wait(NULL);
                 }
                 prevUse = 1;
-                break;
+                for (int i = 1; i < 100; i++)
+                {
+                    arguments[i] = NULL;
+                }
             case SEMICOLON:
                 if (fork() == 0)
                 {
