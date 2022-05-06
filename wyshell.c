@@ -110,9 +110,9 @@ int main()
                 }
                 else
                 {
-                    arguments[count] = lexeme;
-                    arguments[count + 2] = arguments[count + 1];
-                    count++;
+                    // arguments[count] = lexeme;
+                    // arguments[count + 2] = arguments[count + 1];
+                    // count++;
                     if (eol == 1)
                     {
                         break;
@@ -144,20 +144,61 @@ int main()
             case PIPE:
                 // if (pipe(p) < 0)
                 //     exit(1);
+                int fd1[2];
+                int fd2[2];
+
+                if (pipe(fd1) == -1)
+                {
+                    fprintf(stderr, "Pipe Failed");
+                    return 1;
+                }
+                if (pipe(fd2) == -1)
+                {
+                    fprintf(stderr, "Pipe Failed");
+                    return 1;
+                }
+
                 if (fork() == 0)
                 {
+                    close(fd1[0]);
+                    write(fd1[1], current->command, strlen(current->command) + 1);
+                    close(fd1[1]);
+                    wait(NULL);
+
+                    close(fd2[1]);
+
+                    read(fd2[0], current->command, 100);
+                    printf("Concatenated string %s\n", current->command);
+                    close(fd2[0]);
+
                     int status_code = execvp(current->command, arguments);
                     if (status_code == -1)
                     {
                         printf("Terminated Incorrectly\n");
                     }
+                    if (amp != 1)
+                    {
+                        wait(NULL);
+                    }
+                    exit(0);
+                }
+                else if (fork() > 0)
+                {
+                    close(fd1[1]); // Close writing end of first pipe
+
+                    // Read a string using first pipe
+                    char newCommand[100];
+                    read(fd1[0], newCommand, 100);
+
+                    close(fd1[0]);
+                    close(fd2[0]);
+
+                    write(fd2[1], newCommand, strlen(newCommand) + 1);
+                    close(fd2[1]);
+
                     exit(0);
                 }
                 // Remove if breaks pipe delay
-                if (amp != 1)
-                {
-                    wait(NULL);
-                }
                 prevUse = 1;
                 break;
             case SEMICOLON:
