@@ -145,15 +145,15 @@ int main()
             case PIPE:
                 // if (pipe(p) < 0)
                 //     exit(1);
-                if (fork() == 0)
-                {
-                    int status_code = execvp(current->command, arguments);
-                    if (status_code == -1)
-                    {
-                        printf("Terminated Incorrectly\n");
-                    }
-                    exit(0);
-                }
+                // if (fork() == 0)
+                // {
+                //     int status_code = execvp(current->command, arguments);
+                //     if (status_code == -1)
+                //     {
+                //         printf("Terminated Incorrectly\n");
+                //     }
+                //     exit(0);
+                // }
                 // Remove if breaks pipe delay
                 if (amp != 1)
                 {
