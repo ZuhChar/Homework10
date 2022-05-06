@@ -74,6 +74,7 @@ int main()
 {
     Node *Head = NULL, *current = NULL;
     Word *commands = NULL;
+    char *arguments[100] = {lexeme, NULL};
     while (1)
     {
         printf("$> ");
@@ -92,7 +93,6 @@ int main()
         // current = calloc(1, sizeof(Node));
         while (rtn != EOL)
         {
-            char *arguments[100] = {lexeme, NULL};
             switch (rtn)
             {
             case WORD:
