@@ -166,6 +166,7 @@ int main()
                 {
                     arguments[i] = NULL;
                 }
+                break;
             case SEMICOLON:
                 if (fork() == 0)
                 {
