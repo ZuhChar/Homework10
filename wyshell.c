@@ -212,21 +212,21 @@ int main()
             }
         }
         // Create a child to run the command in
-        if (prevUse == 0)
-        {
+        // if (prevUse == 0)
+        // {
 
-            if (fork() == 0)
-            {
-                if (execvp(current->command, arguments) == -1)
-                {
-                    printf("Terminated Incorrectly\n");
-                }
-                else
-                {
-                    exit(0);
-                }
-            }
-        }
+        //     if (fork() == 0)
+        //     {
+        //         if (execvp(current->command, arguments) == -1)
+        //         {
+        //             printf("Terminated Incorrectly\n");
+        //         }
+        //         else
+        //         {
+        //             exit(0);
+        //         }
+        //     }
+        // }
         /*
             First attempt at printing the output
             commands = calloc(1, sizeof(Word));
