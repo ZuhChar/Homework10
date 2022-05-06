@@ -208,7 +208,7 @@ int main()
 
             if (fork() == 0)
             {
-                if (execvp(current->command, current->arg_list) == -1)
+                if (execvp(current->command, arguments) == -1)
                 {
                     printf("Terminated Incorrectly\n");
                 }
