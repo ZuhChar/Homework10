@@ -89,8 +89,7 @@ int main()
         int eol = 0;
         int count = 1;
         int amp = 0;
-        char command = lexeme;
-        char *arguments[100] = {command, NULL};
+        char *arguments[100] = {lexeme, NULL};
         // current = calloc(1, sizeof(Node));
         while (rtn != EOL)
         {
@@ -112,7 +111,7 @@ int main()
                 else
                 {
                     arguments[count + 1] = arguments[count];
-                    arguments[count] = lexeme;
+                    arguments[count] = current->command;
                     count++;
                     if (eol == 1)
                     {
