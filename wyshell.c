@@ -203,10 +203,6 @@ int main()
             {
                 break;
             }
-            for (int i = 0; i < 100; i++)
-            {
-                arguments[i] = NULL;
-            }
         }
         // Create a child to run the command in
         if (prevUse == 0)
