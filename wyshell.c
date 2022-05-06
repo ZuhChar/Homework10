@@ -162,9 +162,9 @@ int main()
                 }
                 prevUse = 1;
                 for (int i = 1; i < 100; i++)
-            {
-                arguments[i] = NULL;
-            }
+                {
+                    arguments[i] = NULL;
+                }
                 break;
             case SEMICOLON:
                 if (fork() == 0)
