@@ -205,10 +205,16 @@ int main()
         // Create a child to run the command in
         if (prevUse == 0)
         {
-
+            int i = 0;
+            char* args[100] = {};
+            while(current->arg_list->next != NULL){
+                args[i] = current->arg_list->string;
+                i++;
+            }
+            args[i] = NULL;
             if (fork() == 0)
             {
-                if (execvp(current->command, current->arg_list) == -1)
+                if (execvp(current->command, args) == -1)
                 {
                     printf("Terminated Incorrectly\n");
                 }
