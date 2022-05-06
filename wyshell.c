@@ -144,20 +144,6 @@ int main()
             case PIPE:
                 // if (pipe(p) < 0)
                 //     exit(1);
-                int fd1[2];
-                int fd2[2];
-
-                if (pipe(fd1) == -1)
-                {
-                    fprintf(stderr, "Pipe Failed");
-                    return 1;
-                }
-                if (pipe(fd2) == -1)
-                {
-                    fprintf(stderr, "Pipe Failed");
-                    return 1;
-                }
-
                 if (fork() == 0)
                 {
                     int status_code = execvp(current->command, arguments);
@@ -165,17 +151,13 @@ int main()
                     {
                         printf("Terminated Incorrectly\n");
                     }
-                    if (amp != 1)
-                    {
-                        wait(NULL);
-                    }
                     exit(0);
                 }
-                else if (fork() > 0)
-                {
-                    
-                }
                 // Remove if breaks pipe delay
+                if (amp != 1)
+                {
+                    wait(NULL);
+                }
                 prevUse = 1;
                 break;
             case SEMICOLON:
