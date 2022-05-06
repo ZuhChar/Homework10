@@ -166,6 +166,7 @@ int main()
                 {
                     arguments[i] = NULL;
                 }
+                Head = NULL;
                 break;
             case SEMICOLON:
                 if (fork() == 0)
@@ -185,6 +186,7 @@ int main()
                 {
                     wait(NULL);
                 }
+                Head = NULL;
                 prevUse = 1;
                 break;
             case ERROR_CHAR:
